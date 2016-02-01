@@ -2,7 +2,7 @@
 
 from sys import exit
 import pygame
-from morpyon_tools import *
+from morpyon_game import *
 
 screen_size = (640, 400)
 red = (255, 0, 0)
@@ -14,9 +14,12 @@ screen = pygame.display.set_mode(screen_size)
 
 screen.fill(grey)
 
-case1 = pygame.Rect(position, box_size(screen_size))
-case1surface = screen.subsurface(case1)
-case1surface.fill(red)
+game = MorpyonGame((screen_size))
+
+for (x,y) in game.positions():
+    cell = pygame.Rect((x,y), game.box_size())
+    cell_surface = screen.subsurface(cell)
+    cell_surface.fill(red)
 
 pygame.display.update()
 while 1:
